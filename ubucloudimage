@@ -71,7 +71,7 @@ rsync -av --partial --delete --delete-after \
       --timeout=$IO_TIMEOUT \
       --bwlimit=$SPEED \
       --exclude ".trace/${HOSTNAME}" \
-      $UBUCOUD_EXCLUDE \
+      $UBUCLOUD_EXCLUDE \
       $UBUCLOUD_MIRROR $UBUCLOUD_DIR
 
 if [ $? -ne 0 ]; then
