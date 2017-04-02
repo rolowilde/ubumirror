@@ -30,6 +30,11 @@ fi
 
 LOGFILE="$LOGDIR/ubuarchive.log"
 
+PROTO="--ipv4"
+if [ "$IPV6" -eq 1 ]; then
+   PROTO="--ipv6"
+fi
+
 # Log all activity to file.
 exec >> $LOGFILE 2>&1
 
@@ -68,6 +73,7 @@ echo "$(date -R): Initiating Ubuntu archive pool sync..."
 rsync -av --partial --delete --delete-after \
       --timeout=$IO_TIMEOUT \
       --bwlimit=$SPEED \
+      $PROTO \
       --exclude "indices/" --exclude "dists/" --exclude "project/trace/${HOSTNAME}" \
       --exclude "Archive-Update-in-Progress-${HOSTNAME}" \
       $UBUARC_EXCLUDE \
